@@ -1,0 +1,118 @@
+// Include theme-specific fonts
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital@0;1&display=swap');
+
+/*-- scss:defaults --*/
+// Override theme settings (see ../template/settings.scss)
+// Base settings for all themes that can optionally be
+// overridden by the super-theme
+
+// Background of the presentation
+$backgroundColor: #fff;
+
+// fonts
+//$presentation-font-size-root: 18px;
+
+
+// Primary/body text
+//$mainFont: 'Jost', sans-serif;
+//$mainFontSize: 25px;
+//$mainColor: #333;
+
+// Vertical spacing between blocks of text
+$blockMargin: 8px;
+
+// Headings
+$headingMargin: 0 0 $blockMargin 0;
+$headingFont: 'Abhaya Libre', Impact, sans-serif;
+$headingColor: #2B0348;
+$headingLineHeight: 1.2;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingTextShadow: none;
+$headingFontWeight: bold;
+$heading1TextShadow: $headingTextShadow;
+
+$heading1Size: 2.80em;
+$heading2Size: 1.6em;
+$heading3Size: 1.4em;
+$heading4Size: 1.00em;
+
+$codeFont: monospace;
+
+// Links and actions
+$linkColor: #437597;
+$linkColorHover: darken( $linkColor, 20% );
+
+// Text selection
+$selectionBackgroundColor: #FF5E99;
+$selectionColor: #fff;
+
+// start using css here
+/* --- TITLE SLIDE --- */
+
+#title-slide h1,
+#title-slide h2,
+#title-slide h3,
+#title-slide .subtitle,
+#title-slide .quarto-title-author-name,
+#title-slide .quarto-title-authors,
+#title-slide .date {
+  color: #ffffff !important;
+}
+
+.seccion {
+  color: white;
+  font-size: 1.0em;
+  padding: 10;
+  font-family: 'Abhaya Libre', Impact, sans-serif;
+  vertical-align: middle;
+}
+
+.box {
+  margin-top: 8px;
+  margin-right: 10px;
+  border: 3px solid #006DAE;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #E6E6E6;
+}
+
+.venn-container {
+  position: relative;
+  width: 850px;  /* tamaño circulo */
+  height: 400px;
+  margin: 0 auto;
+}
+
+/* Base */
+.circle {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* COLORES */
+.circle1 { background: #5C39B8; }
+.circle2 { background: #DB9B44; }
+.circle3 { background: #1f3c88; }
+
+/* --- ESTADO 1: SEPARADOS --- */
+.circle1 { top: 90px; left: 30px; }
+.circle2 { top: 90px; left: 330px; }
+.circle3 { top: 90px; left: 630px; }
+
+/* --- ESTADO 2: VENN --- */
+.venn-overlap .circle1 { top: 80px; left: 140px; opacity: 0.85; }
+.venn-overlap .circle2 { top: 80px; left: 360px; opacity: 0.85; }
+.venn-overlap .circle3 { top: 240px; left: 240px; opacity: 0.85; }
+
+
