@@ -1,0 +1,109 @@
+---
+title: "Customer Experience Dashboard"
+author: "[Data Storytelling para la toma de decisiones]"
+format:
+  dashboard:
+    theme: materia
+    orientation: rows
+---
+
+## Row {expandable: false}
+
+Eres el Líder de la Experiencia del Cliente en una empresa de Retail de productos de oficina y recientemente han aplicado una evaluación para medir la percepción de los clientes de un Impresor Multifuncional, así como si han recibido atención personalizada por parte de diferentes áreas.
+
+## Row
+
+```{r}
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(forcats)
+library(ggthemes)
+library(ggpubr)
+library(patchwork)
+library(gridExtra)
+
+data1 <- read_xlsx("data/features.xlsx")
+data1 <- data1 %>% 
+  pivot_longer(cols = !item ,names_to = "porcentaje")
+
+# writexl::write_xlsx(data1,"data1.xlsx")
+
+# Orden tipo escala Likert
+data1$porcentaje <- factor(
+  data1$porcentaje,
+  levels = c(
+    "totalmente desacuerdo",
+    "en desacuerdo",
+    "neutral",
+    "de acuerdo",
+    "totalmente de acuerdo"
+  )
+)
+
+
+# Grafico
+data1 %>% 
+  arrange(desc(item)) %>% 
+  ggplot(aes(x = fct_inorder(item), y = value, fill = porcentaje)) +
+  geom_bar(stat = "identity", width = 0.6) +
+  geom_text(aes(label = paste(value*100,"%", sep = "" ) ),position = position_stack(vjust = 0.5 ))+
+  coord_flip()+
+  scale_y_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(values = c(
+    "#C00000",
+    "#F4B183",
+    "#D9D9D9",
+    "#9DC3E6",
+    "#2F5597"
+  )) +
+  labs(
+    title = "Percepción del Impresor",
+    x = "",
+    y = "Porcentaje",
+    fill = ""
+  ) +
+  theme_excel()
+
+
+
+```
+
+```{r}
+data2 <- read_xlsx("data/contacto.xlsx")
+data2 <- data2 %>% 
+  pivot_longer(cols = !area ,names_to = "porcentaje")
+
+fig1 <- data2 %>% 
+  filter(porcentaje=="ultimo trimestre") %>% 
+  ggplot(aes(x="",y=value,fill = area))+
+  geom_bar(stat="identity", width=1) +
+  geom_text(aes(label = paste(round(value,2)*100,"%", sep = "" )),
+            position = position_stack(vjust = 0.5))+
+  coord_polar("y", start=0)+
+  theme_void()+
+  # theme_excel()+
+  labs(title = "Atención Personalizada",
+       subtitle = "Ultimo Trimestre")+
+  scale_color_excel_new()
+
+
+fig2 <- data2 %>% 
+  filter(porcentaje=="actual trimestre") %>% 
+  ggplot(aes(x="",y=value,fill = area))+
+  geom_bar(stat="identity", width=1) +
+  geom_text(aes(label = paste(round(value,2)*100,"%", sep = "" )),
+            position = position_stack(vjust = 0.5))+
+  coord_polar("y", start=0)+
+  theme_void()+
+  # theme_excel()+
+  labs(title = "Atención Personalizada",
+       subtitle = "Actual Trimestre")+
+  scale_color_excel_new()
+
+
+fig1+fig2+
+  plot_layout(nrow = 1)
+
+```
