@@ -30,6 +30,25 @@ editor: visual
 
 # [Mentalidad Analítica: Pensar con Datos]{.seccion} {background-image="images/fondo_seccion.png"}
 
+## Práctica
+
+:::::: columns
+::::: {.column width="100%"}
+
+::: fragment
+Eres el Líder de la Experiencia del Cliente en una empresa de Retail de productos de oficina y recientemente han aplicado una evaluación para medir la percepción de los clientes de un Impresor Multifuncional, así como si han recibido atención personalizada por parte de diferentes áreas.
+
+<br> 
+:::
+
+::: fragment
+-   [Customer Experience Dashboard](https://laostat-cx-dashboard-data-stotytelling.share.connect.posit.cloud){target="_blank" title="Clic para ir"}
+:::
+
+:::::
+::::::
+
+
 ## 👀 ¡No todos los datos sirven para el mismo tipo de decisión! {auto-animate="true" auto-animate-easing="ease-in-out"}
 
 <br> <br>
